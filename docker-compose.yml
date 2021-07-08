@@ -1,0 +1,50 @@
+version: "3"
+services:
+    client:
+        container_name: client
+        # image: node:latest
+        # working_dir: /client
+        # command: npm start
+        build: 
+            context: ./client
+            dockerfile: Dockerfile
+
+        volumes:
+            - C:\Users\edgar\proyectos\javascript\kushki-home-always-win\client:/client
+            - /client/node_modules
+        restart: always
+        ports:
+            - "8080:3000"
+        depends_on:
+            - api
+        networks:
+            - webappnetwork
+    api:
+        container_name: api
+        build: 
+            context: ./api
+            dockerfile: Dockerfile
+        environment:
+            MONGO_URL: "mongodb://db:27017/test"
+            PORT: "30000"
+        restart: always
+        ports:
+            - "30000:30000"
+        depends_on:
+            - db
+        networks: 
+            - webappnetwork
+        volumes:
+            - C:\Users\edgar\proyectos\javascript\kushki-home-always-win\api:/api
+            - /api/node_modules
+    db:
+        container_name: db
+        image: mongo
+        restart: always
+        ports:
+            - "27017:27017"
+        networks: 
+            - webappnetwork
+networks:
+    webappnetwork:        
+        driver: bridge

@@ -1,0 +1,97 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+* {
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 60px;
+}
+
+input {
+    margin-bottom: 1em;
+}
+
+*/
+
+
+@layer base {
+    h1 {
+      @apply text-2xl;
+    }
+    h2 {
+      @apply text-xl;
+    }
+
+  }
+/*
+* {
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 60px;
+}
+
+input {
+    margin-bottom: 1em;
+}
+*/
+.symbol__container {
+
+}
+
+.symbol__image {
+    width: 200px;
+    height: 200px;
+}
+
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+   }
+    100% {
+        transform: translateY(calc(-200px * 4));
+   }
+}
+.slider {
+    background: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+    height: 200px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+}
+.slider::before, .slider::after {
+    content: "";
+    height: 200px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+.slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+.slider::before {
+    left: 0;
+    top: 0;
+}
+.slider .slide-track {
+    animation: scroll 0.5s linear infinite;
+    width: calc(200px * 4);
+}
+.slider .slide {
+    height: 200px;
+    width: 200px;
+}
